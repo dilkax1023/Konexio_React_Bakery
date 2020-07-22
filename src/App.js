@@ -1,26 +1,22 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Add from './components/Add';
+import List from './components/List';
+import Pay from './components/Pay';
+import Button from './components/core/Button';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+	state = { activeTab: 'add', items: [] };
+	render() {
+		return (
+			<div>
+				<Button />
+				<Add />
+				<List />
+				<Pay />
+			</div>
+		);
+	}
 }
 
 export default App;
