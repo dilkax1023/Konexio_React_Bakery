@@ -1,5 +1,3 @@
-// import '../public/css/bootstrap.min.css';
-
 import React from 'react';
 import './App.css';
 import Add from './components/Add';
@@ -31,9 +29,7 @@ class App extends React.Component {
 	onFormSubmit = (item, price) => {
 		const items = this.state.items;
 		items.push({ name: item, price: price });
-		// console.log(items);
 		this.setState({ items: items });
-		// console.log(items);
 	};
 
 	updateItemsHandler = (index) => {

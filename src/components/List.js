@@ -16,11 +16,6 @@ const List = ({ items, deleteHandler }) => {
 		);
 	});
 
-	// const onClickDelete = (index) => {
-	// 	const newItems = items.splice(index, 1);
-	// 	deleteHandler(newItems);
-	// };
-
 	return (
 		<div style={{ width: '60%', lineHeight: '100%' }} className='mx-auto'>
 			{itemsList.length ? (
