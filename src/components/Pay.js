@@ -29,22 +29,22 @@ class Pay extends React.Component {
 	};
 
 	setPriceFn = () => {
-		let { basket, totalVat, totalEcoTax, total } = this.state;
+		let { basket, totalVat, total } = this.state;
 		let subTotalTemp = 0;
+		let totalEcoTaxTemp = 0;
 		for (let item of basket) {
 			subTotalTemp += item.price * item.count;
-			totalEcoTax += item.count * 0.03;
+			totalEcoTaxTemp += item.count * 0.03;
 		}
 		totalVat = subTotalTemp * 0.2;
-		total = subTotalTemp + totalVat + totalEcoTax;
+		total = subTotalTemp + totalVat + totalEcoTaxTemp;
 
 		this.setState({
 			subTotal: subTotalTemp,
 			totalVat: totalVat,
-			totalEcoTax: totalEcoTax,
+			totalEcoTax: totalEcoTaxTemp,
 			total: total,
 		});
-		console.log(subTotalTemp, totalVat, totalEcoTax, total);
 	};
 
 	render() {
@@ -54,9 +54,10 @@ class Pay extends React.Component {
 		const card = this.props.items.map((item, index) => {
 			return (
 				<Card
-					name={item.name}
+					name={item.name.toLowerCase()}
 					price={item.price}
 					onClickFn={this.onClickItem}
+					errorHandler={this.displayErrorHandler}
 					key={index}
 				/>
 			);

@@ -15,9 +15,14 @@ class Add extends React.Component {
 
 	onFormSubmit = (e) => {
 		e.preventDefault();
+		const availebleItems = ['coffee', 'croissant', 'cake', 'cookie'];
 		const { input, price } = this.state;
-		this.props.onSubmit(input, price);
-		this.setState({ input: '' });
+		if (availebleItems.includes(this.state.input.toLowerCase())) {
+			this.props.onSubmit(input, price);
+			this.setState({ input: '' });
+		} else {
+			this.setState({ input: `item is not availeble` });
+		}
 	};
 
 	render() {

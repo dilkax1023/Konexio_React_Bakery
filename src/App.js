@@ -9,7 +9,7 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = { activeTab: 'add', items: [] };
+		this.state = { activeTab: 'add', items: [], errorMessage: '' };
 
 		this.onClickTabAdd = this.onClickTabAdd.bind(this);
 		this.onClickTabList = this.onClickTabList.bind(this);
@@ -27,9 +27,19 @@ class App extends React.Component {
 	}
 
 	onFormSubmit = (item, price) => {
-		const items = this.state.items;
-		items.push({ name: item, price: price });
-		this.setState({ items: items });
+		let items = this.state.items;
+		let myObj = { name: item, price: price };
+		let check = items.some((el) => el.name === myObj.name);
+		if (!check) {
+			items.push({ name: item, price: price });
+			this.setState({ items: items });
+		} else {
+			this.setState({ items: items });
+		}
+	};
+
+	checkObj = (obj, list) => {
+		return list.some((elem) => elem === obj);
 	};
 
 	updateItemsHandler = (index) => {

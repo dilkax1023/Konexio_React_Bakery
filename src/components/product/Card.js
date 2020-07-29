@@ -5,15 +5,22 @@ class Card extends React.Component {
 	state = { source: specimen };
 
 	componentDidMount() {
-		fetch(
-			`http://konexio.codiscovery.co/bakery/api/?q=${this.props.name}`
-		).then((response) => {
-			if (!response.ok) throw new Error('status code error');
-			response
-				.json()
-				.then((data) => this.setState({ source: data.source }))
-				.catch((err) => console.log(err));
-		});
+		fetch(`http://konexio.codiscovery.co/bakery/api/?q=${this.props.name}`)
+			.then((response) => {
+				console.log(response);
+				if (!response.ok) {
+					throw new Error('item is not availeble');
+				}
+				return response;
+			})
+			.then((response) => {
+				response.json().then((data) => {
+					this.setState({ source: data.source });
+				});
+			})
+			.catch((error) => {
+				return error;
+			});
 	}
 
 	render() {
